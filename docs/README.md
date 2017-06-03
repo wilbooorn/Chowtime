@@ -13,6 +13,9 @@ Chowtime is a mobile App built using React Native, that utilizes the Yelp Fusion
 * [View Wireframes][wireframes]
 * [React Components][components]
 
+[wireframes]: /docs/wireframes
+[components]: /docs/component-hierarchy.md
+
 ## Implementation Timeline
 
 ### Phase 1
