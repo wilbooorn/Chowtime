@@ -12,7 +12,6 @@ export default class Chowtime extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Navbar />
         <Text style={styles.welcome}>
           It's Chowtime!
         </Text>
