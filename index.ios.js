@@ -15,6 +15,7 @@ export default class Chowtime extends Component {
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
+          This is a test.
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
