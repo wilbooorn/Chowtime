@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Stylesheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 class Navbar extends React.Component {
   render() {
@@ -10,9 +10,9 @@ class Navbar extends React.Component {
 }
 
 export default Navbar;
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
   Navbar: {
     height: 20,
-    backgroundColor: "dodgerblue"
+    backgroundColor: "blue"
   }
 });
