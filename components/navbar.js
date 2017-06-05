@@ -13,6 +13,5 @@ export default Navbar;
 const styles = StyleSheet.create({
   Navbar: {
     height: 20,
-    backgroundColor: "blue"
-  }
+    backgroundColor: "blue"  }
 });
