@@ -5,15 +5,12 @@ import {
   Text,
   View
 } from 'react-native';
-
-import Navbar from "./components/navbar.js";
+import App from './components/app.js';
 
 export default class Chowtime extends Component {
   render() {
     return (
-      <View>
-        <Navbar />
-      </View>
+      <App />
     );
   }
 }
