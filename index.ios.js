@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 
-import Navbar from "./components/navbar.jsx";
+import Navbar from "./components/navbar.js";
 
 export default class Chowtime extends Component {
   render() {
