@@ -11,18 +11,14 @@ class HomeScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return(
-        <Image source={require('../assets/home-screen-image.jpg')} style={styles.background}>
-          <Navbar />
-
-
-          <View>
-            <Text style={styles.welcome}>Welcome to</Text>
-            <Text style={styles.welcome}>Chowtime</Text>
-          </View>
-          <TouchableOpacity
+        <Image source={require('../assets/slack-imgs.jpg')} style={styles.background}>
+          <Image source={require('../assets/Chowtime-logo.png')} style={styles.logo}>
+          </Image>
+          <Button
             onPress={() => navigate('Search')}
-            title="Go to search!"
-          ><Text>Press Me</Text></TouchableOpacity>
+            title="Get Started!">
+            <Text>Press Me</Text>
+          </Button>
         </Image>
     )
   }
@@ -31,22 +27,9 @@ class HomeScreen extends React.Component {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  welcome: {
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: 'white',
+  logo: {
     alignSelf: 'center',
-    backgroundColor: 'transparent'
-  },
-
-  homePage: {
-    backgroundColor: 'transparent'
-    // flex: 1,
-    // justifyContent: 'space-between',
-  },
-
-  button: {
-    backgroundColor: 'transparent'
+    top: 20
   },
 
   background: {
@@ -54,5 +37,7 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     resizeMode: 'cover',
+    backgroundColor: "rgba(0,0,0,0.1)",
+    justifyContent: 'space-between'
   }
 })
