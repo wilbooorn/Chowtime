@@ -4,7 +4,7 @@ import ResultScreen from './result_screen';
 import HomeScreen from './home_screen';
 
 const App = StackNavigator({
-  Home: {screen: HomeScreen},
+  Home: { screen: HomeScreen },
   Search: {screen: SearchScreen},
   Result: {screen: ResultScreen},
 });

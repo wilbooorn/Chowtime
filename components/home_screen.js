@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './navbar';
-import { View, Text, StyleSheet, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import Button from 'react-native-button';
 import { StackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
@@ -11,18 +12,14 @@ class HomeScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return(
-        <Image source={require('../assets/home-screen-image.jpg')} style={styles.background}>
-          <Navbar />
-
-
-          <View>
-            <Text style={styles.welcome}>Welcome to</Text>
-            <Text style={styles.welcome}>Chowtime</Text>
-          </View>
-          <TouchableOpacity
-            onPress={() => navigate('Search')}
-            title="Go to search!"
-          ><Text>Press Me</Text></TouchableOpacity>
+        <Image source={require('../assets/slack-imgs.jpg')} style={styles.background}>
+          <Image source={require('../assets/Chowtime-logo.png')} style={styles.logo}>
+          </Image>
+          <Button
+            containerStyle={styles.button}
+            onPress={() => navigate('Search')}>
+            <Text style={styles.buttonText}>Get Started</Text>
+          </Button>
         </Image>
     )
   }
@@ -31,22 +28,9 @@ class HomeScreen extends React.Component {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  welcome: {
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: 'white',
+  logo: {
     alignSelf: 'center',
-    backgroundColor: 'transparent'
-  },
-
-  homePage: {
-    backgroundColor: 'transparent'
-    // flex: 1,
-    // justifyContent: 'space-between',
-  },
-
-  button: {
-    backgroundColor: 'transparent'
+    top: 20
   },
 
   background: {
@@ -54,5 +38,23 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     resizeMode: 'cover',
+    backgroundColor: "rgba(0,0,0,0.1)",
+    justifyContent: 'space-between'
+  },
+
+  button: {
+    padding: 10,
+    height: 45,
+    width: 300,
+    alignSelf: 'center',
+    bottom: 50,
+    borderRadius: 4,
+    backgroundColor: "white",
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  buttonText: {
+    fontWeight: 'bold'
   }
 })
