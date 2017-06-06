@@ -6,8 +6,8 @@ import { StackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
-  };
+    header: null
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -30,7 +30,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
-    top: 20
+    top: 30
   },
 
   background: {
