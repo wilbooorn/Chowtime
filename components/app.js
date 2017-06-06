@@ -5,8 +5,9 @@ import HomeScreen from './home_screen';
 
 const App = StackNavigator({
   Home: { screen: HomeScreen },
-  Search: {screen: SearchScreen},
-  Result: {screen: ResultScreen},
-});
+  Search: { screen: SearchScreen },
+  Result: { screen: ResultScreen },
+},{ headerMode: 'screen' }
+);
 
 export default App;
