@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './navbar';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
@@ -11,15 +11,19 @@ class HomeScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return(
-      <View>
-        <Navbar />
-        <Text style={styles.welcome}>Welcome To</Text>
-        <Text style={styles.welcome}>Chowtime</Text>
-        <Button
-          onPress={() => navigate('Search')}
-          title="Go to search!"
-        />
-      </View>
+        <Image source={require('../assets/home-screen-image.jpg')} style={styles.background}>
+          <Navbar />
+
+
+          <View>
+            <Text style={styles.welcome}>Welcome to</Text>
+            <Text style={styles.welcome}>Chowtime</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => navigate('Search')}
+            title="Go to search!"
+          ><Text>Press Me</Text></TouchableOpacity>
+        </Image>
     )
   }
 }
@@ -30,7 +34,25 @@ const styles = StyleSheet.create({
   welcome: {
     fontWeight: 'bold',
     fontSize: 30,
-    justifyContent: 'center',
-    alignSelf: 'center'
+    color: 'white',
+    alignSelf: 'center',
+    backgroundColor: 'transparent'
+  },
+
+  homePage: {
+    backgroundColor: 'transparent'
+    // flex: 1,
+    // justifyContent: 'space-between',
+  },
+
+  button: {
+    backgroundColor: 'transparent'
+  },
+
+  background: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
   }
 })
