@@ -13,7 +13,8 @@ class HomeScreen extends React.Component {
     return(
       <View>
         <Navbar />
-        <Text>Home Screen</Text>
+        <Text style={styles.welcome}>Welcome To</Text>
+        <Text style={styles.welcome}>Chowtime</Text>
         <Button
           onPress={() => navigate('Search')}
           title="Go to search!"
@@ -24,3 +25,12 @@ class HomeScreen extends React.Component {
 }
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  welcome: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    justifyContent: 'center',
+    alignSelf: 'center'
+  }
+})
