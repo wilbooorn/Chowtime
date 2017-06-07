@@ -91,6 +91,7 @@ class SearchScreen extends React.Component{
             data={dataPrice}
             style={{flex: 1}}
             initValue="Select Price Range"
+            keyboardShouldPersistTaps= "always"
             onChange={(option)=>{ this.setState({price:option.label})}}>
             <Text style={styles.defaultText}>
               {this.state.price === '' ? "Select Price" : this.state.price}
@@ -104,6 +105,7 @@ class SearchScreen extends React.Component{
             data={dataCategory}
             style={{flex: 1}}
             initValue="Select Category"
+            keyboardShouldPersistTaps= "always"
             onChange={(option)=>{ this.setState({category:option.label})}}>
             <Text style={styles.defaultText}>
               {this.state.category === '' ? "Select Category" : this.state.category}
@@ -117,6 +119,7 @@ class SearchScreen extends React.Component{
             data={dataDistance}
             style={{flex: 1}}
             initValue="Select Distance"
+            keyboardShouldPersistTaps= "always"
             onChange={(option)=>{ this.setState({distance:option.label})}}>
             <Text style={styles.defaultText}>
               {this.state.distance === '' ? "Select Distance" : this.state.distance}
@@ -159,27 +162,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 })
-
-// <View>
-//   <Text>Category</Text>
-//   <Picker
-//     style={styles.picker}
-//     selectedValue={this.state.category}
-//     onValueChange={this.onValueChange.bind(this, 'category')}>
-//     {Object.keys(CATEGORIES).map((category, idx) => (
-//       <Item key={idx} label={category} value={CATEGORIES[category]} />
-//     ))}
-//   </Picker>
-// </View>
-//
-// <View>
-//   <Text>Distance</Text>
-//   <Picker
-//     style={styles.picker}
-//     selectedValue={this.state.distance}
-//     onValueChange={this.onValueChange.bind(this, 'distance')}>
-//     {Object.keys(DISTANCE).map((distance, idx) => (
-//       <Item key={idx} label={distance} value={DISTANCE[distance]} />
-//     ))}
-//   </Picker>
-// </View>
