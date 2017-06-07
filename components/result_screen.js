@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from './navbar';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 
 class ResultScreen extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      businesses: []
+      businesses: ["empty"]
     };
   }
 
@@ -18,21 +18,28 @@ class ResultScreen extends React.Component{
       method: "GET"
     }
     fetch(url, object)
-      .then(response => response.json()).then(data => console.log(data))
+      .then(response => response.json()).then(data => this.setState({businesses: data}))
   }
 
   static navigationOptions = {
     title: 'Result',
   };
   render(){
-    const { navigate } = this.props.navigation;
-
-    return (
-      <View>
-        <Navbar />
-        <Text>HI</Text>
-      </View>
-    );
+    if (this.state.businesses[0] === "empty") {
+      return(<Text>Loading</Text>)
+    }
+    else if (businesses.length === 0){
+      return <Text>No mo</Text>
+    } else {
+      showBusiness = this.state.businesses[0]
+      const { navigate } = this.props.navigation;
+      console.log(showBusiness);
+      return (
+        <View>
+          <Text>HI</Text>
+        </View>
+      );
+    }
   }
 }
 

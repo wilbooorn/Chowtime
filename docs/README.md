@@ -13,6 +13,7 @@ With this extension, users will be able to:
 - [ ] Yelp Fusion API Implementation
 - [ ] Uber API Implementation
 - [ ] Restaurant display page
+- [ ] Demo website
 
 ## Wireframes
 
@@ -20,7 +21,7 @@ Pictured below is the home page where a user will be able to enter search criter
 
 ![Search Page](https://res.cloudinary.com/dslok1mwv/image/upload/v1496635237/Screen_Shot_2017-06-04_at_8.58.43_PM_fmgku5.png)
 
-Below is the results page, which will display a restaurant's information taken from Yelp. Users will have the option to either search for another restaurant or call an Uber to the restaurant.
+Below is the results page, which will display a restaurant's information taken from Yelp. Users will have the option to either search for another restaurant or call an Uber to the restaurant. The search page will also grab the user's geolocation. If the user does not allow the app to access their location, the default location will be in San Francisco, CA.
 
 ![Results Page](https://res.cloudinary.com/dslok1mwv/image/upload/v1496635238/Screen_Shot_2017-06-04_at_8.51.06_PM_au4fcj.png)
 
@@ -34,7 +35,11 @@ Technologies Used:
 
 The primary challenges will be:
 - Learning React Native.
+- Learning Yelp Fusion API.
+- Learning Uber API
+- Passing search parameters to Yelp Fusion's API.
 - Converting user's location to latitude and longitude coordinates and passing it to Uber's API.
+  - Utilize global navigator to fetch information about user's location.
 - Making Chowtime Android and iOS compatible.
 
 ## Things we accomplished this weekend.
@@ -49,7 +54,7 @@ The primary challenges will be:
 
 **Day 1:** Get started learning React Native. Familiarizing ourselves with components, styles, and ecosystem.
 
-**Day 2:** Complete layout for initial search page.
+**Day 2:** Complete layout for initial search page. Finish researching Yelp Fusion API, familiarizing ourselves with how to make requests and receive responses.
 
 **Day 3:** Implement Yelp Fusion API given search criteria and store results on the frontend.
 

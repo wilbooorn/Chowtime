@@ -95,7 +95,6 @@ class SearchScreen extends React.Component{
   handleButton(e){
     e.preventDefault();
     const { navigate } = this.props.navigation;
-    alert(this.state.longitude)
     const url = `https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${this.state.latitude}&longitude=${this.state.longitude}&categories=${CATEGORIES[this.state.category]}&radius=${DISTANCE[this.state.distance]}&price=${PRICES[this.state.price]}`
     navigate('Result', {url})
   }
