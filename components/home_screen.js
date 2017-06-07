@@ -30,7 +30,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
-    top: 30
+    top: 50
   },
 
   background: {
