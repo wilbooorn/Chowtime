@@ -59,7 +59,6 @@ class ResultScreen extends React.Component{
     } else {
       const { navigate } = this.props.navigation;
       let {showBusiness} = this.state
-      console.log(showBusiness);
 
       return (
         <View style={styles.show}>
