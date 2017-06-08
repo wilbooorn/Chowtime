@@ -40,7 +40,7 @@ class ResultScreen extends React.Component{
     if (this.state.businesses[0] === "empty") {
       return(
         <View style={styles.loading}>
-          <Text>Loading</Text>
+          <Text style={styles.loadingText}>Loading...</Text>
           <Image source={require('../assets/burger.gif')} style={styles.burger} />
         </View>
       )
@@ -71,9 +71,11 @@ export default ResultScreen;
 const styles = StyleSheet.create({
   loading: {
     flex: 1,
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white'
   },
-  burger: {
-    alignSelf: 'center'
-  }
+  loadingText: {
+    fontSize: 36
+  },
 })
