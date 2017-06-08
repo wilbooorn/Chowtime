@@ -3,7 +3,7 @@ import Navbar from './navbar';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import ModalPicker from 'react-native-modal-picker';
-import Button from 'react-native-button';
+import Button from 'apsl-react-native-button'
 
 const PRICES = {
   "$": "1",
@@ -76,9 +76,13 @@ class SearchScreen extends React.Component{
       price: '',
       distance: '',
       latitude: 33.68,
-      longitude: -117.82
+      longitude: -117.82,
+      disabled: true
     };
     this.handleButton = this.handleButton.bind(this)
+    this.handlePrice = this.handlePrice.bind(this)
+    this.handleDistance = this.handleDistance.bind(this)
+    this.handleCategory = this.handleCategory.bind(this)
   }
 
   componentDidMount(){
@@ -99,6 +103,27 @@ class SearchScreen extends React.Component{
     navigate('Result', {url})
   }
 
+  handlePrice(option){
+    this.setState({price: option.label})
+    if(this.state.distance !== '' && this.state.category !== ''){
+      this.setState({disabled: false})
+    }
+  }
+
+  handleDistance(option){
+    this.setState({distance:option.label})
+    if(this.state.price !== '' && this.state.category !== ''){
+      this.setState({disabled: false})
+    }
+  }
+
+  handleCategory(option){
+    this.setState({category: option.label})
+    if(this.state.distance !== '' && this.state.price !== ''){
+      this.setState({disabled: false})
+    }
+  }
+
 
   render(){
 
@@ -111,7 +136,7 @@ class SearchScreen extends React.Component{
             data={dataPrice}
             style={{flex: 1}}
             initValue="Select Price Range"
-            onChange={(option)=>{ this.setState({price:option.label})}}>
+            onChange={(option) => this.handlePrice(option)}>
             <Text style={styles.defaultText}>
               {this.state.price === '' ? "Select Price" : this.state.price}
             </Text>
@@ -124,7 +149,7 @@ class SearchScreen extends React.Component{
             data={dataCategory}
             style={{flex: 1}}
             initValue="Select Category"
-            onChange={(option)=>{ this.setState({category:option.label})}}>
+            onChange={(option) => this.handleCategory(option)}>
             <Text style={styles.defaultText}>
               {this.state.category === '' ? "Select Category" : this.state.category}
             </Text>
@@ -137,16 +162,19 @@ class SearchScreen extends React.Component{
             data={dataDistance}
             style={{flex: 1}}
             initValue="Select Distance"
-            onChange={(option)=>{ this.setState({distance:option.label})}}>
+            onChange={(option) => this.handleDistance(option)}>
             <Text style={styles.defaultText}>
               {this.state.distance === '' ? "Select Distance" : this.state.distance}
             </Text>
           </ModalPicker>
         </View>
 
-        <Button containerStyle={styles.button}
-          onPress={this.handleButton} >
-          <Text style={styles.buttonText}>Search</Text>
+        <Button style={styles.button}
+          disabledStyle={{opacity: 0.5}}
+          onPress={this.handleButton}
+          isDisabled={this.state.disabled}
+          textStyle={styles.buttonText}>
+          Search
 
         </Button>
       </View>
@@ -158,9 +186,11 @@ export default SearchScreen;
 
 const styles = StyleSheet.create({
   search: {
+    flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    height: 500
+    justifyContent: "space-around",
+    height: 500,
+    backgroundColor: 'dodgerblue'
   },
 
   welcome: {
@@ -169,7 +199,7 @@ const styles = StyleSheet.create({
   },
 
   defaultText: {
-    fontSize: 24,
+    fontSize: 24
   },
 
   container: {
@@ -183,10 +213,18 @@ const styles = StyleSheet.create({
   },
 
   button: {
-
+    padding: 10,
+    height: 45,
+    width: 300,
+    alignSelf: 'center',
+    bottom: 50,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white'
   },
 
   buttonText: {
-
+      fontWeight: 'bold'
   }
 })
