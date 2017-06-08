@@ -1,14 +1,18 @@
 import React from 'react';
 import Navbar from './navbar';
 import { Text, View, StyleSheet, Image } from 'react-native';
+import Button from 'react-native-button';
 
 class ResultScreen extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      businesses: ["empty"]
+      businesses: ["empty"],
+      showBusiness: ""
     };
+
+    this.handleNext = this.handleNext.bind(this);
   }
 
   componentDidMount(){
@@ -18,25 +22,37 @@ class ResultScreen extends React.Component{
       method: "GET"
     }
     fetch(url, object)
-      .then(response => response.json()).then(data => this.setState({businesses: data}))
+      .then(response => response.json()).then(data => this.setState({businesses: data.businesses, showBusiness: data.businesses[0]}))
   }
 
   static navigationOptions = {
     title: 'Result',
   };
+
+  handleNext() {
+    this.state.businesses.shift()
+    this.setState({businesses: this.state.businesses, showBusiness: this.state.businesses[0]})
+  }
+
   render(){
     if (this.state.businesses[0] === "empty") {
       return(<Text>Loading</Text>)
     }
-    else if (businesses.length === 0){
+    else if (this.state.businesses.length === 0){
       return <Text>No mo</Text>
     } else {
-      showBusiness = this.state.businesses[0]
       const { navigate } = this.props.navigation;
-      console.log(showBusiness);
+
       return (
         <View>
-          <Text>HI</Text>
+          <Text>{this.state.showBusiness.name}</Text>
+          <Image source={{uri: this.state.showBusiness.image_url}}
+            style={{width: 300, height: 300}}
+            >
+          </Image>
+          <Button onPress={this.handleNext}>
+            <Text>Nahh</Text>
+          </Button>
         </View>
       );
     }
