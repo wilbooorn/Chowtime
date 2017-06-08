@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './navbar';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import ModalPicker from 'react-native-modal-picker';
 import Button from 'apsl-react-native-button'
@@ -129,7 +129,7 @@ class SearchScreen extends React.Component{
 
     return (
       <View style={styles.search}>
-        <Text style={styles.welcome}>What are you feeling?</Text>
+        <Image source={require('../assets/white-text-logo.png')} style={styles.logo} />
         <View style={styles.container}>
           <Text style={styles.label}>Price</Text>
           <ModalPicker
@@ -188,18 +188,21 @@ const styles = StyleSheet.create({
   search: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-around",
-    height: 500,
     backgroundColor: 'dodgerblue'
   },
 
   welcome: {
-    fontSize: 30,
-    marginBottom: 30
+    fontSize: 24,
+    marginTop: 5,
+    marginBottom: 10
   },
 
   defaultText: {
-    fontSize: 24
+    fontSize: 24,
+    backgroundColor: 'white',
+    padding: 8,
+    borderColor: 'black',
+    borderWidth: 1,
   },
 
   container: {
@@ -209,7 +212,8 @@ const styles = StyleSheet.create({
 
   label: {
     fontSize: 30,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 5
   },
 
   button: {
@@ -221,10 +225,15 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
 
   buttonText: {
       fontWeight: 'bold'
+  },
+
+  logo: {
+    marginTop: 10,
+    marginBottom: 10
   }
 })
