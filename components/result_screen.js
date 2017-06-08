@@ -36,6 +36,15 @@ class ResultScreen extends React.Component{
     this.setState({businesses: this.state.businesses, showBusiness: this.state.businesses[0]})
   }
 
+  // allCategories() {
+  //   console.log(this.showBusiness.categories);
+  //   return this.showBusiness.categories.map((cat, i) => {
+  //     <View key={i}>
+  //       <Text>{cat}</Text>
+  //     </View>
+  //   });
+  // }
+
   render(){
     if (this.state.businesses[0] === "empty") {
       return(
@@ -50,7 +59,8 @@ class ResultScreen extends React.Component{
     } else {
       const { navigate } = this.props.navigation;
       let {showBusiness} = this.state
-      
+      console.log(showBusiness);
+
       return (
         <View style={styles.show}>
           <Text style={styles.title}>{showBusiness.name}</Text>
@@ -58,6 +68,12 @@ class ResultScreen extends React.Component{
             style={{width: 300, height: 300}}
             >
           </Image>
+
+          <View style={styles.category}>
+            <Text>
+              {showBusiness.categories.map((cat, idx) => (cat.title)).join(', ')}
+            </Text>
+          </View>
 
           <Button onPress={this.handleNext}>
             <Text>Nahh</Text>
@@ -80,12 +96,25 @@ const styles = StyleSheet.create({
     fontSize: 24,
     padding: 10,
   },
+
+  category: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: 5
+  },
+
+  categoryName: {
+    padding: 1
+  },
+
   loading: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white'
   },
+
   loadingText: {
     fontSize: 36
   }
