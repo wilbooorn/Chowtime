@@ -42,14 +42,16 @@ class ResultScreen extends React.Component{
       return <Text>No mo</Text>
     } else {
       const { navigate } = this.props.navigation;
-
+      let {showBusiness} = this.state
+      
       return (
-        <View>
-          <Text>{this.state.showBusiness.name}</Text>
-          <Image source={{uri: this.state.showBusiness.image_url}}
+        <View style={styles.show}>
+          <Text style={styles.title}>{showBusiness.name}</Text>
+          <Image source={{uri: showBusiness.image_url}}
             style={{width: 300, height: 300}}
             >
           </Image>
+
           <Button onPress={this.handleNext}>
             <Text>Nahh</Text>
           </Button>
@@ -60,3 +62,15 @@ class ResultScreen extends React.Component{
 }
 
 export default ResultScreen;
+
+const styles = StyleSheet.create({
+  show: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  title: {
+    fontSize: 24,
+    padding: 10,
+  }
+})
