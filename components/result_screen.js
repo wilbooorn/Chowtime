@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from './navbar';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import Button from 'react-native-button';
-import APIKEY from './api';
 
 class ResultScreen extends React.Component{
   constructor(props){
@@ -19,7 +18,7 @@ class ResultScreen extends React.Component{
   componentDidMount(){
     const url = this.props.navigation.state.params.url;
     const object = {
-      headers: {"Authorization": APIKEY},
+      headers: {"Authorization": "Bearer M59IVacUQeax9jvkA66bEhIYydGofBCM_aqmYqykQZG_bGajU5_6MtLB-7C5AFTq6SyskoRFFvC79r5zo9KuY58a67oIXVHKd66pEvJtEr3Y-n8yQavwyIB6K54xWXYx"},
       method: "GET"
     }
     fetch(url, object)
