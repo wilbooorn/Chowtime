@@ -21,8 +21,10 @@ class ResultScreen extends React.Component{
       headers: {"Authorization": "Bearer M59IVacUQeax9jvkA66bEhIYydGofBCM_aqmYqykQZG_bGajU5_6MtLB-7C5AFTq6SyskoRFFvC79r5zo9KuY58a67oIXVHKd66pEvJtEr3Y-n8yQavwyIB6K54xWXYx"},
       method: "GET"
     }
+    setTimeout(() =>
     fetch(url, object)
       .then(response => response.json()).then(data => this.setState({businesses: data.businesses, showBusiness: data.businesses[0]}))
+    , 2000)
   }
 
   static navigationOptions = {
@@ -36,7 +38,12 @@ class ResultScreen extends React.Component{
 
   render(){
     if (this.state.businesses[0] === "empty") {
-      return(<Text>Loading</Text>)
+      return(
+        <View style={styles.loading}>
+          <Text style={styles.loadingText}>Loading...</Text>
+          <Image source={require('../assets/burger.gif')} style={styles.burger} />
+        </View>
+      )
     }
     else if (this.state.businesses.length === 0){
       return <Text>No mo</Text>
@@ -72,5 +79,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     padding: 10,
+  },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white'
+  },
+  loadingText: {
+    fontSize: 36
   }
 })
