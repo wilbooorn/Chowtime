@@ -3,6 +3,19 @@ import Navbar from './navbar';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import Button from 'react-native-button';
 
+const RATING = {
+  0: '../assets/yelp_stars/web_and_ios/regular/regular_0.png',
+  1: '../assets/yelp_stars/web_and_ios/regular/regular_1.png',
+  1.5: '../assets/yelp_stars/web_and_ios/regular/regular_1_half.png',
+  2: '../assets/yelp_stars/web_and_ios/regular/regular_2.png',
+  2.5: '../assets/yelp_stars/web_and_ios/regular/regular_2_half.png',
+  3: '../assets/yelp_stars/web_and_ios/regular/regular_3.png',
+  3.5: '../assets/yelp_stars/web_and_ios/regular/regular_3_half.png',
+  4: '../assets/yelp_stars/web_and_ios/regular/regular_4.png',
+  4.5: '../assets/yelp_stars/web_and_ios/regular/regular_4_half.png',
+  5: '../assets/yelp_stars/web_and_ios/regular/regular_5.png'
+};
+
 class ResultScreen extends React.Component{
   constructor(props){
     super(props);
@@ -36,15 +49,6 @@ class ResultScreen extends React.Component{
     this.setState({businesses: this.state.businesses, showBusiness: this.state.businesses[0]})
   }
 
-  // allCategories() {
-  //   console.log(this.showBusiness.categories);
-  //   return this.showBusiness.categories.map((cat, i) => {
-  //     <View key={i}>
-  //       <Text>{cat}</Text>
-  //     </View>
-  //   });
-  // }
-
   render(){
     if (this.state.businesses[0] === "empty") {
       return(
@@ -59,6 +63,7 @@ class ResultScreen extends React.Component{
     } else {
       const { navigate } = this.props.navigation;
       let {showBusiness} = this.state
+      // let rating = RATING[showBusiness.rating];
       console.log(showBusiness);
 
       return (
@@ -74,6 +79,10 @@ class ResultScreen extends React.Component{
               {showBusiness.categories.map((cat, idx) => (cat.title)).join(', ')}
             </Text>
           </View>
+
+          <Image source={require('../assets/yelp_stars/web_and_ios/regular/regular_4_half.png')}
+            style={styles.rating}>
+          </Image>
 
           <Button onPress={this.handleNext}>
             <Text>Nahh</Text>
@@ -95,6 +104,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     padding: 10,
+  },
+
+  rating: {
+    width: 100,
+    height: 15
   },
 
   category: {

@@ -72,12 +72,16 @@ class SearchScreen extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      category: '',
-      price: '',
-      distance: '',
+      // category: '',
+      category: 'American',
+      // price: '',
+      price: '$',
+      // distance: '',
+      distance: '2 Miles',
       latitude: 33.68,
       longitude: -117.82,
-      disabled: true
+      // disabled: true
+      disabled: false
     };
     this.handleButton = this.handleButton.bind(this)
     this.handlePrice = this.handlePrice.bind(this)
