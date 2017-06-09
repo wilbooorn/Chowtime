@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './navbar';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import Button from 'react-native-button';
+import Button from 'apsl-react-native-button'
 
 const RATING = {
   0: '../assets/yelp_stars/web_and_ios/regular/regular_0.png',
@@ -84,7 +84,8 @@ class ResultScreen extends React.Component{
             style={styles.rating}>
           </Image>
 
-          <Button onPress={this.handleNext}>
+          <Button onPress={this.handleNext}
+            style={styles.nextButton}>
             <Text>Nahh</Text>
           </Button>
         </View>
@@ -97,8 +98,9 @@ export default ResultScreen;
 
 const styles = StyleSheet.create({
   show: {
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "space-around",
+    alignItems: "center",
+    flex: 1
   },
 
   title: {
@@ -131,5 +133,11 @@ const styles = StyleSheet.create({
 
   loadingText: {
     fontSize: 36
+  },
+
+  nextButton: {
+    width: 300,
+    backgroundColor: 'white',
+    alignSelf: 'center'
   }
 })

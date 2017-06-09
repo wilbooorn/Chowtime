@@ -207,6 +207,8 @@ const styles = StyleSheet.create({
     padding: 8,
     borderColor: 'black',
     borderWidth: 1,
+    width: 250,
+    textAlign: 'center'
   },
 
   container: {
@@ -237,7 +239,7 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 10
   }
 })
