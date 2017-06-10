@@ -24,7 +24,7 @@ class ResultScreen extends React.Component{
 
     this.state = {
       businesses: ["empty"],
-      showBusiness: ""
+      showBusiness: "",
     };
 
     this.handleNext = this.handleNext.bind(this);
@@ -39,7 +39,8 @@ class ResultScreen extends React.Component{
     }
     setTimeout(() =>
     fetch(url, object)
-      .then(response => response.json()).then(data => this.setState({businesses: data.businesses, showBusiness: data.businesses[0]}))
+      .then(response => response.json()).then(data => this.setState({businesses: data.businesses,
+          showBusiness: data.businesses[0]}))
     , 2000)
   }
 
@@ -82,11 +83,14 @@ class ResultScreen extends React.Component{
     } else {
 
       let {showBusiness} = this.state
+
+      console.log(showBusiness);
       let rating = showBusiness.rating
 
       return (
         <View style={styles.show}>
           <Text style={styles.title}>{showBusiness.name}</Text>
+
           <Image source={{uri: showBusiness.image_url}}
             style={{width: 300, height: 300}}>
           </Image>
@@ -96,6 +100,9 @@ class ResultScreen extends React.Component{
               {showBusiness.categories.map((cat, idx) => (cat.title)).join(', ')}
             </Text>
           </View>
+
+
+          <Text>{showBusiness.review_count} Reviews</Text>
 
           <Image source={RATING[rating]}
             style={styles.rating} />
