@@ -2,19 +2,20 @@ import React from 'react';
 import Navbar from './navbar';
 import { StackNavigator } from 'react-navigation';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import Button from 'apsl-react-native-button'
+import Button from 'apsl-react-native-button';
+import { RideRequestButton } from 'react-native-uber-rides';
 
 const RATING = {
-  0: '../assets/yelp_stars/web_and_ios/regular/regular_0.png',
-  1: '../assets/yelp_stars/web_and_ios/regular/regular_1.png',
-  1.5: '../assets/yelp_stars/web_and_ios/regular/regular_1_half.png',
-  2: '../assets/yelp_stars/web_and_ios/regular/regular_2.png',
-  2.5: '../assets/yelp_stars/web_and_ios/regular/regular_2_half.png',
-  3: '../assets/yelp_stars/web_and_ios/regular/regular_3.png',
-  3.5: '../assets/yelp_stars/web_and_ios/regular/regular_3_half.png',
-  4: '../assets/yelp_stars/web_and_ios/regular/regular_4.png',
-  4.5: '../assets/yelp_stars/web_and_ios/regular/regular_4_half.png',
-  5: '../assets/yelp_stars/web_and_ios/regular/regular_5.png'
+  0: require('../assets/yelp_stars/web_and_ios/regular/regular_0.png'),
+  1: require('../assets/yelp_stars/web_and_ios/regular/regular_1.png'),
+  1.5: require('../assets/yelp_stars/web_and_ios/regular/regular_1_half.png'),
+  2: require('../assets/yelp_stars/web_and_ios/regular/regular_2.png'),
+  2.5: require('../assets/yelp_stars/web_and_ios/regular/regular_2_half.png'),
+  3: require('../assets/yelp_stars/web_and_ios/regular/regular_3.png'),
+  3.5: require('../assets/yelp_stars/web_and_ios/regular/regular_3_half.png'),
+  4: require('../assets/yelp_stars/web_and_ios/regular/regular_4.png'),
+  4.5: require('../assets/yelp_stars/web_and_ios/regular/regular_4_half.png'),
+  5: require('../assets/yelp_stars/web_and_ios/regular/regular_5.png')
 };
 
 class ResultScreen extends React.Component{
@@ -58,7 +59,6 @@ class ResultScreen extends React.Component{
 
   render(){
 
-    // let image = ""
     const { navigate } = this.props.navigation;
 
     if (this.state.businesses[0] === "empty") {
@@ -82,17 +82,13 @@ class ResultScreen extends React.Component{
     } else {
 
       let {showBusiness} = this.state
-      let rating = require(RATING[showBusiness.rating]);
-      // console.log(rating);
-
-      console.log(showBusiness);
+      let rating = showBusiness.rating
 
       return (
         <View style={styles.show}>
           <Text style={styles.title}>{showBusiness.name}</Text>
           <Image source={{uri: showBusiness.image_url}}
-            style={{width: 300, height: 300}}
-            >
+            style={{width: 300, height: 300}}>
           </Image>
 
           <View style={styles.category}>
@@ -101,9 +97,9 @@ class ResultScreen extends React.Component{
             </Text>
           </View>
 
-          <Image source={require('../assets/yelp_stars/web_and_ios/regular/regular_4_half.png')}
-            style={styles.rating}>
-          </Image>
+          <Image source={RATING[rating]}
+            style={styles.rating} />
+
 
           <View style={styles.logoContainer}>
             <Text style={styles.logoText}>on</Text>
@@ -111,6 +107,11 @@ class ResultScreen extends React.Component{
               style={styles.yelpLogo}>
             </Image>
           </View>
+
+          <RideRequestButton
+            style={styles.uber}
+            pickup={{latitude: this.props.navigation.state.params.latitude, longitude: this.props.navigation.state.params.longitude}}
+            dropoff={{latitude: showBusiness.coordinates.latitude, longitude: showBusiness.coordinates.longitude}} />
 
           <Button onPress={this.handleNext}
             style={styles.nextButton}>
@@ -187,6 +188,7 @@ const styles = StyleSheet.create({
   logoText: {
     marginTop: 7,
     fontWeight: 'bold'
+  },
 
   noMore: {
     flex: 1,
@@ -198,5 +200,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20
+  },
+
+  uber: {
+    backgroundColor: 'white'
   }
 })
