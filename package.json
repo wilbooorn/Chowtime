@@ -16,6 +16,7 @@
 		"react-native-modal-picker": "0.0.16",
 		"react-native-radio-buttons": "^0.14.0",
 		"react-native-selectme": "^1.2.3",
+		"react-native-uber-rides": "^0.4.3",
 		"react-navigation": "^1.0.0-beta.11"
 	},
 	"devDependencies": {

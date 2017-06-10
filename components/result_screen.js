@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from './navbar';
 import { StackNavigator } from 'react-navigation';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import Button from 'apsl-react-native-button'
+import Button from 'apsl-react-native-button';
+import { RideRequestButton } from 'react-native-uber-rides';
 
 const RATING = {
   0: require('../assets/yelp_stars/web_and_ios/regular/regular_0.png'),
@@ -59,7 +60,6 @@ class ResultScreen extends React.Component{
 
   render(){
 
-    // let image = ""
     const { navigate } = this.props.navigation;
 
     if (this.state.businesses[0] === "empty") {
@@ -85,6 +85,7 @@ class ResultScreen extends React.Component{
       let {showBusiness} = this.state
 
       console.log(showBusiness);
+      let rating = showBusiness.rating
 
       return (
         <View style={styles.show}>
@@ -100,11 +101,12 @@ class ResultScreen extends React.Component{
             </Text>
           </View>
 
+
           <Text>{showBusiness.review_count} Reviews</Text>
 
-          <Image source={RATING[showBusiness.rating]}
-            style={styles.rating}>
-          </Image>
+          <Image source={RATING[rating]}
+            style={styles.rating} />
+
 
           <View style={styles.logoContainer}>
             <Text style={styles.logoText}>on</Text>
@@ -112,6 +114,11 @@ class ResultScreen extends React.Component{
               style={styles.yelpLogo}>
             </Image>
           </View>
+
+          <RideRequestButton
+            style={styles.uber}
+            pickup={{latitude: this.props.navigation.state.params.latitude, longitude: this.props.navigation.state.params.longitude}}
+            dropoff={{latitude: showBusiness.coordinates.latitude, longitude: showBusiness.coordinates.longitude}} />
 
           <Button onPress={this.handleNext}
             style={styles.nextButton}>
@@ -200,5 +207,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20
+  },
+
+  uber: {
+    backgroundColor: 'white'
   }
 })

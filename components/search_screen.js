@@ -98,10 +98,10 @@ class SearchScreen extends React.Component{
     const { navigate } = this.props.navigation;
     if(this.state.category ===  ''){
       const url = `https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${this.state.latitude}&longitude=${this.state.longitude}&radius=${DISTANCE[this.state.distance]}&price=${PRICES[this.state.price]}`
-      navigate('Result', {url})
+      navigate('Result', {url, latitude: this.state.latitude, longitude: this.state.longitude})
     } else {
       const url = `https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${this.state.latitude}&longitude=${this.state.longitude}&categories=${CATEGORIES[this.state.category]}&radius=${DISTANCE[this.state.distance]}&price=${PRICES[this.state.price]}`
-      navigate('Result', {url})
+      navigate('Result', {url, latitude: this.state.latitude, longitude: this.state.longitude})
     }
   }
 
@@ -181,7 +181,6 @@ class SearchScreen extends React.Component{
         <Button style={styles.button}
           disabledStyle={{opacity: 0.5}}
           onPress={this.handleButton}
-          isDisabled={this.state.disabled}
           textStyle={styles.buttonText}>
           Search
 
