@@ -5,16 +5,16 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import Button from 'apsl-react-native-button'
 
 const RATING = {
-  0: '../assets/yelp_stars/web_and_ios/regular/regular_0.png',
-  1: '../assets/yelp_stars/web_and_ios/regular/regular_1.png',
-  1.5: '../assets/yelp_stars/web_and_ios/regular/regular_1_half.png',
-  2: '../assets/yelp_stars/web_and_ios/regular/regular_2.png',
-  2.5: '../assets/yelp_stars/web_and_ios/regular/regular_2_half.png',
-  3: '../assets/yelp_stars/web_and_ios/regular/regular_3.png',
-  3.5: '../assets/yelp_stars/web_and_ios/regular/regular_3_half.png',
-  4: '../assets/yelp_stars/web_and_ios/regular/regular_4.png',
-  4.5: '../assets/yelp_stars/web_and_ios/regular/regular_4_half.png',
-  5: '../assets/yelp_stars/web_and_ios/regular/regular_5.png'
+  0: require('../assets/yelp_stars/web_and_ios/regular/regular_0.png'),
+  1: require('../assets/yelp_stars/web_and_ios/regular/regular_1.png'),
+  1.5: require('../assets/yelp_stars/web_and_ios/regular/regular_1_half.png'),
+  2: require('../assets/yelp_stars/web_and_ios/regular/regular_2.png'),
+  2.5: require('../assets/yelp_stars/web_and_ios/regular/regular_2_half.png'),
+  3: require('../assets/yelp_stars/web_and_ios/regular/regular_3.png'),
+  3.5: require('../assets/yelp_stars/web_and_ios/regular/regular_3_half.png'),
+  4: require('../assets/yelp_stars/web_and_ios/regular/regular_4.png'),
+  4.5: require('../assets/yelp_stars/web_and_ios/regular/regular_4_half.png'),
+  5: require('../assets/yelp_stars/web_and_ios/regular/regular_5.png')
 };
 
 class ResultScreen extends React.Component{
@@ -23,7 +23,7 @@ class ResultScreen extends React.Component{
 
     this.state = {
       businesses: ["empty"],
-      showBusiness: ""
+      showBusiness: "",
     };
 
     this.handleNext = this.handleNext.bind(this);
@@ -38,7 +38,8 @@ class ResultScreen extends React.Component{
     }
     setTimeout(() =>
     fetch(url, object)
-      .then(response => response.json()).then(data => this.setState({businesses: data.businesses, showBusiness: data.businesses[0]}))
+      .then(response => response.json()).then(data => this.setState({businesses: data.businesses,
+          showBusiness: data.businesses[0]}))
     , 2000)
   }
 
@@ -82,17 +83,15 @@ class ResultScreen extends React.Component{
     } else {
 
       let {showBusiness} = this.state
-      let rating = require(RATING[showBusiness.rating]);
-      // console.log(rating);
 
       console.log(showBusiness);
 
       return (
         <View style={styles.show}>
           <Text style={styles.title}>{showBusiness.name}</Text>
+
           <Image source={{uri: showBusiness.image_url}}
-            style={{width: 300, height: 300}}
-            >
+            style={{width: 300, height: 300}}>
           </Image>
 
           <View style={styles.category}>
@@ -101,7 +100,9 @@ class ResultScreen extends React.Component{
             </Text>
           </View>
 
-          <Image source={require('../assets/yelp_stars/web_and_ios/regular/regular_4_half.png')}
+          <Text>{showBusiness.review_count} Reviews</Text>
+
+          <Image source={RATING[showBusiness.rating]}
             style={styles.rating}>
           </Image>
 
@@ -187,6 +188,7 @@ const styles = StyleSheet.create({
   logoText: {
     marginTop: 7,
     fontWeight: 'bold'
+  },
 
   noMore: {
     flex: 1,
