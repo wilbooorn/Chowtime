@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './navbar';
+import { StackNavigator } from 'react-navigation';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import Button from 'apsl-react-native-button'
 
@@ -26,6 +27,7 @@ class ResultScreen extends React.Component{
     };
 
     this.handleNext = this.handleNext.bind(this);
+    this.handleResearch = this.handleResearch.bind(this);
   }
 
   componentDidMount(){
@@ -49,23 +51,40 @@ class ResultScreen extends React.Component{
     this.setState({businesses: this.state.businesses, showBusiness: this.state.businesses[0]})
   }
 
+  handleResearch(){
+    const { navigate } = this.props.navigation;
+    navigate('Search')
+  }
+
   render(){
-    // let image = "
+
+    // let image = ""
+    const { navigate } = this.props.navigation;
+
     if (this.state.businesses[0] === "empty") {
       return(
         <View style={styles.loading}>
-          <Text style={styles.loadingText}>Loading...</Text>
+          <Text style={styles.loadingText}>Finding your next meal...</Text>
           <Image source={require('../assets/burger.gif')} style={styles.burger} />
         </View>
       )
     }
     else if (this.state.businesses.length === 0){
-      return <Text>No mo</Text>
+      return (
+        <View style={styles.noMore}>
+          <Text style={styles.picky}>You Sure Are Picky</Text>
+          <Button onPress={this.handleResearch}
+            style={styles.nextButton}>
+            <Text>Search Again</Text>
+          </Button>
+        </View>
+      )
     } else {
-      const { navigate } = this.props.navigation;
+
       let {showBusiness} = this.state
       let rating = require(RATING[showBusiness.rating]);
       // console.log(rating);
+
       console.log(showBusiness);
 
       return (
@@ -143,7 +162,7 @@ const styles = StyleSheet.create({
   },
 
   loadingText: {
-    fontSize: 36
+    fontSize: 30
   },
 
   nextButton: {
@@ -168,5 +187,16 @@ const styles = StyleSheet.create({
   logoText: {
     marginTop: 7,
     fontWeight: 'bold'
+
+  noMore: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  picky: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20
   }
 })
