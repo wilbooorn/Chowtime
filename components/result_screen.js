@@ -57,7 +57,10 @@ class ResultScreen extends React.Component{
   }
 
   render(){
+
+    // let image = ""
     const { navigate } = this.props.navigation;
+
     if (this.state.businesses[0] === "empty") {
       return(
         <View style={styles.loading}>
@@ -79,6 +82,9 @@ class ResultScreen extends React.Component{
     } else {
 
       let {showBusiness} = this.state
+      let rating = require(RATING[showBusiness.rating]);
+      // console.log(rating);
+
       console.log(showBusiness);
 
       return (
@@ -98,6 +104,13 @@ class ResultScreen extends React.Component{
           <Image source={require('../assets/yelp_stars/web_and_ios/regular/regular_4_half.png')}
             style={styles.rating}>
           </Image>
+
+          <View style={styles.logoContainer}>
+            <Text style={styles.logoText}>on</Text>
+            <Image source={require('../assets/yelp-logo.png')}
+              style={styles.yelpLogo}>
+            </Image>
+          </View>
 
           <Button onPress={this.handleNext}
             style={styles.nextButton}>
@@ -125,7 +138,9 @@ const styles = StyleSheet.create({
 
   rating: {
     width: 100,
-    height: 15
+    height: 15,
+    padding: 0,
+    margin: 0
   },
 
   category: {
@@ -155,6 +170,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignSelf: 'center'
   },
+
+  yelpLogo: {
+    resizeMode: 'cover',
+    height: 30,
+    width: 60
+  },
+
+  logoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center'
+  },
+
+  logoText: {
+    marginTop: 7,
+    fontWeight: 'bold'
 
   noMore: {
     flex: 1,
