@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './navbar';
 import { StackNavigator } from 'react-navigation';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Linking } from 'react-native';
 import Button from 'apsl-react-native-button';
 import { RideRequestButton } from 'react-native-uber-rides';
 import getDirections from 'react-native-google-maps-directions'
@@ -31,6 +31,7 @@ class ResultScreen extends React.Component{
     this.handleNext = this.handleNext.bind(this);
     this.handleResearch = this.handleResearch.bind(this);
     this.handleGetDirections = this.handleGetDirections.bind(this);
+    this.handleYelp = this.handleYelp.bind(this);
   }
 
   componentDidMount(){
@@ -80,6 +81,13 @@ class ResultScreen extends React.Component{
     getDirections(data)
   }
 
+  handleYelp(showBusiness) {
+    if (Linking.canOpenURL(showBusiness.url)) {
+      Linking.openURL(showBusiness.url);
+    }
+
+  }
+
   render(){
 
     const { navigate } = this.props.navigation;
@@ -114,9 +122,11 @@ class ResultScreen extends React.Component{
         <View style={styles.show}>
           <Text style={styles.title}>{showBusiness.name}</Text>
 
-          <Image source={{uri: showBusiness.image_url}}
-            style={{width: 300, height: 300}}>
-          </Image>
+          <TouchableOpacity onPress={() => this.handleYelp(showBusiness)}>
+            <Image source={{uri: showBusiness.image_url}}
+              style={{width: 300, height: 300}}>
+            </Image>
+          </TouchableOpacity>
 
           <View style={styles.category}>
             <Text style={styles.categoryText}>
@@ -132,10 +142,12 @@ class ResultScreen extends React.Component{
 
 
           <View style={styles.logoContainer}>
-            <Text style={styles.logoText}>on</Text>
-            <Image source={require('../assets/yelp-logo.png')}
-              style={styles.yelpLogo}>
-            </Image>
+            <Text style={styles.logoText}>visit on</Text>
+            <TouchableOpacity onPress={() => this.handleYelp(showBusiness)}>
+              <Image source={require('../assets/yelp-logo.png')}
+                style={styles.yelpLogo}>
+              </Image>
+            </TouchableOpacity>
           </View>
 
           <Button onPress={() => this.handleGetDirections(showBusiness)}
@@ -167,7 +179,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     padding: 10,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
+    letterSpacing: .5
   },
 
   rating: {
@@ -181,11 +194,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    padding: 5
+    marginTop: 5
   },
 
   categoryText: {
-    color: 'white'
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    letterSpacing: .5
   },
 
   categoryName: {
@@ -223,7 +239,10 @@ const styles = StyleSheet.create({
   },
 
   review: {
-    color: 'white'
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+    letterSpacing: .5
   },
 
   logoText: {
@@ -257,8 +276,3 @@ const styles = StyleSheet.create({
     bottom: 150
   }
 })
-
-// <RideRequestButton
-//   style={styles.uber}
-//   pickup={{latitude: this.props.navigation.state.params.latitude, longitude: this.props.navigation.state.params.longitude}}
-//   dropoff={{latitude: showBusiness.coordinates.latitude, longitude: showBusiness.coordinates.longitude}} />

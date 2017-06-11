@@ -240,7 +240,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    letterSpacing: .5
   },
 
   button: {
