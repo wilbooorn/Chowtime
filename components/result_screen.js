@@ -4,6 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import Button from 'apsl-react-native-button';
 import { RideRequestButton } from 'react-native-uber-rides';
+import getDirections from 'react-native-google-maps-directions'
 
 const RATING = {
   0: require('../assets/yelp_stars/web_and_ios/regular/regular_0.png'),
@@ -29,6 +30,7 @@ class ResultScreen extends React.Component{
 
     this.handleNext = this.handleNext.bind(this);
     this.handleResearch = this.handleResearch.bind(this);
+    this.handleGetDirections = this.handleGetDirections.bind(this);
   }
 
   componentDidMount(){
@@ -54,8 +56,28 @@ class ResultScreen extends React.Component{
   }
 
   handleResearch(){
-    const { navigate } = this.props.navigation;
-    navigate('Search')
+    this.props.navigation.goBack();
+  }
+
+  handleGetDirections = (business) => {
+    const data = {
+       source: {
+        latitude: this.props.navigation.state.params.latitude,
+        longitude: this.props.navigation.state.params.longitude
+      },
+      destination: {
+        latitude: business.coordinates.latitude,
+        longitude: business.coordinates.longitude
+      },
+      params: [
+        {
+          key: "dirflg",
+          value: "w"
+        }
+      ]
+    }
+
+    getDirections(data)
   }
 
   render(){
@@ -73,6 +95,7 @@ class ResultScreen extends React.Component{
     else if (this.state.businesses.length === 0){
       return (
         <View style={styles.noMore}>
+          <Image source={require('../assets/white-text-logo.png')} style={styles.logo} />
           <Text style={styles.picky}>You Sure Are Picky</Text>
           <Button onPress={this.handleResearch}
             style={styles.nextButton}>
@@ -96,13 +119,13 @@ class ResultScreen extends React.Component{
           </Image>
 
           <View style={styles.category}>
-            <Text>
+            <Text style={styles.categoryText}>
               {showBusiness.categories.map((cat, idx) => (cat.title)).join(', ')}
             </Text>
           </View>
 
 
-          <Text>{showBusiness.review_count} Reviews</Text>
+          <Text style={styles.review}>{showBusiness.review_count} Reviews</Text>
 
           <Image source={RATING[rating]}
             style={styles.rating} />
@@ -115,14 +138,14 @@ class ResultScreen extends React.Component{
             </Image>
           </View>
 
-          <RideRequestButton
-            style={styles.uber}
-            pickup={{latitude: this.props.navigation.state.params.latitude, longitude: this.props.navigation.state.params.longitude}}
-            dropoff={{latitude: showBusiness.coordinates.latitude, longitude: showBusiness.coordinates.longitude}} />
+          <Button onPress={() => this.handleGetDirections(showBusiness)}
+            style={styles.nextButton}>
+            <Text>Get Directions</Text>
+          </Button>
 
           <Button onPress={this.handleNext}
             style={styles.nextButton}>
-            <Text>Nahh</Text>
+            <Text>What Else Ya Got?</Text>
           </Button>
         </View>
       );
@@ -136,19 +159,22 @@ const styles = StyleSheet.create({
   show: {
     justifyContent: "space-around",
     alignItems: "center",
-    flex: 1
+    flex: 1,
+    backgroundColor: "#27343D"
   },
 
   title: {
     fontSize: 24,
     padding: 10,
+    fontWeight: 'bold',
+    color: 'white'
   },
 
   rating: {
     width: 100,
     height: 15,
     padding: 0,
-    margin: 0
+    margin: 0,
   },
 
   category: {
@@ -156,6 +182,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     padding: 5
+  },
+
+  categoryText: {
+    color: 'white'
   },
 
   categoryName: {
@@ -192,24 +222,43 @@ const styles = StyleSheet.create({
     alignContent: 'center'
   },
 
+  review: {
+    color: 'white'
+  },
+
   logoText: {
     marginTop: 7,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'white'
   },
 
   noMore: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: "#27343D"
   },
 
   picky: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 20
+    marginBottom: 20,
+    color: 'white'
   },
 
   uber: {
-    backgroundColor: 'white'
+    alignSelf: 'center',
+    borderColor: 'black',
+    width: 300,
+    height: 44
+  },
+
+  logo: {
+    bottom: 150
   }
 })
+
+// <RideRequestButton
+//   style={styles.uber}
+//   pickup={{latitude: this.props.navigation.state.params.latitude, longitude: this.props.navigation.state.params.longitude}}
+//   dropoff={{latitude: showBusiness.coordinates.latitude, longitude: showBusiness.coordinates.longitude}} />
