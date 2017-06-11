@@ -13,10 +13,10 @@ Chowtime is a mobile App built using React Native, that utilizes the Yelp Fusion
 The user can narrow the search by category, price, and distance. These criteria are passed in as query parameters to the Yelp Fusion API call, to produce restaurants that better fit the user's mood.
 
 
-![Search Page](https://res.cloudinary.com/dslok1mwv/image/upload/v1497143925/search_pkcbg9.png)
+![Search Page](http://res.cloudinary.com/dslok1mwv/image/upload/c_scale,h_782/v1497143925/search_pkcbg9.png)
 
 ### Search results
 
 The result page shows one restaurant from the Yelp Fusion API call, as well as its rating as on Yelp. The user can either choose to have a different restaurant displayed to them, or if they like the current option, they can get directions to the restaurant. Pressing the "Get Directions" button will send the user's current location, as well as the restaurant's location to the Google Maps API, and open up Google Maps in the browser.  
 
-![Result Page](https://res.cloudinary.com/dslok1mwv/image/upload/v1497143925/result_j37obr.png)
+![Result Page](http://res.cloudinary.com/dslok1mwv/image/upload/c_scale,h_782/v1497143925/result_j37obr.png)
