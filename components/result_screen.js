@@ -4,6 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import Button from 'apsl-react-native-button';
 import { RideRequestButton } from 'react-native-uber-rides';
+import getDirections from 'react-native-google-maps-directions'
 
 const RATING = {
   0: require('../assets/yelp_stars/web_and_ios/regular/regular_0.png'),
@@ -29,6 +30,7 @@ class ResultScreen extends React.Component{
 
     this.handleNext = this.handleNext.bind(this);
     this.handleResearch = this.handleResearch.bind(this);
+    this.handleGetDirections = this.handleGetDirections.bind(this);
   }
 
   componentDidMount(){
@@ -54,8 +56,28 @@ class ResultScreen extends React.Component{
   }
 
   handleResearch(){
-    const { navigate } = this.props.navigation;
-    navigate('Search')
+    this.props.navigation.goBack();
+  }
+
+  handleGetDirections = (business) => {
+    const data = {
+       source: {
+        latitude: this.props.navigation.state.params.latitude,
+        longitude: this.props.navigation.state.params.longitude
+      },
+      destination: {
+        latitude: business.coordinates.latitude,
+        longitude: business.coordinates.longitude
+      },
+      params: [
+        {
+          key: "dirflg",
+          value: "w"
+        }
+      ]
+    }
+
+    getDirections(data)
   }
 
   render(){
@@ -116,14 +138,14 @@ class ResultScreen extends React.Component{
             </Image>
           </View>
 
-          <RideRequestButton
-            style={styles.uber}
-            pickup={{latitude: this.props.navigation.state.params.latitude, longitude: this.props.navigation.state.params.longitude}}
-            dropoff={{latitude: showBusiness.coordinates.latitude, longitude: showBusiness.coordinates.longitude}} />
+          <Button onPress={() => this.handleGetDirections(showBusiness)}
+            style={styles.nextButton}>
+            <Text>Get Directions</Text>
+          </Button>
 
           <Button onPress={this.handleNext}
             style={styles.nextButton}>
-            <Text>Nahh</Text>
+            <Text>What Else Ya Got?</Text>
           </Button>
         </View>
       );
@@ -235,3 +257,8 @@ const styles = StyleSheet.create({
     bottom: 150
   }
 })
+
+// <RideRequestButton
+//   style={styles.uber}
+//   pickup={{latitude: this.props.navigation.state.params.latitude, longitude: this.props.navigation.state.params.longitude}}
+//   dropoff={{latitude: showBusiness.coordinates.latitude, longitude: showBusiness.coordinates.longitude}} />

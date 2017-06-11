@@ -12,6 +12,7 @@
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.2",
 		"react-native-button": "^2.0.0",
+		"react-native-google-maps-directions": "^1.1.0",
 		"react-native-icon": "^0.2.10",
 		"react-native-modal-picker": "0.0.16",
 		"react-native-radio-buttons": "^0.14.0",
