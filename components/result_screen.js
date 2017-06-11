@@ -122,11 +122,9 @@ class ResultScreen extends React.Component{
         <View style={styles.show}>
           <Text style={styles.title}>{showBusiness.name}</Text>
 
-          <TouchableOpacity onPress={() => this.handleYelp(showBusiness)}>
-            <Image source={{uri: showBusiness.image_url}}
-              style={{width: 300, height: 300}}>
-            </Image>
-          </TouchableOpacity>
+          <Image source={{uri: showBusiness.image_url}}
+            style={{width: 300, height: 300}}>
+          </Image>
 
           <View style={styles.category}>
             <Text style={styles.categoryText}>
@@ -222,7 +220,8 @@ const styles = StyleSheet.create({
   nextButton: {
     width: 300,
     backgroundColor: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    bottom: 5
   },
 
   yelpLogo: {
@@ -263,13 +262,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     color: 'white'
-  },
-
-  uber: {
-    alignSelf: 'center',
-    borderColor: 'black',
-    width: 300,
-    height: 44
   },
 
   logo: {
