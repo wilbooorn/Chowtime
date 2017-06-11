@@ -149,7 +149,7 @@ class ResultScreen extends React.Component{
           </View>
 
           <Button onPress={() => this.handleGetDirections(showBusiness)}
-            style={styles.nextButton}>
+            style={styles.directions}>
             <Text>Get Directions</Text>
           </Button>
 
@@ -221,7 +221,13 @@ const styles = StyleSheet.create({
     width: 300,
     backgroundColor: 'white',
     alignSelf: 'center',
-    bottom: 5
+    bottom: 8
+  },
+
+  directions: {
+    width: 300,
+    backgroundColor: 'white',
+    alignSelf: 'center',
   },
 
   yelpLogo: {
