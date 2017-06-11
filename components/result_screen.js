@@ -47,7 +47,7 @@ class ResultScreen extends React.Component{
   }
 
   static navigationOptions = {
-    title: 'Result',
+    title: 'Chowtime',
   };
 
   handleNext() {
