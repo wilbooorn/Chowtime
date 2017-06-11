@@ -73,6 +73,7 @@ class ResultScreen extends React.Component{
     else if (this.state.businesses.length === 0){
       return (
         <View style={styles.noMore}>
+          <Image source={require('../assets/white-text-logo.png')} style={styles.logo} />
           <Text style={styles.picky}>You Sure Are Picky</Text>
           <Button onPress={this.handleResearch}
             style={styles.nextButton}>
@@ -96,13 +97,13 @@ class ResultScreen extends React.Component{
           </Image>
 
           <View style={styles.category}>
-            <Text>
+            <Text style={styles.categoryText}>
               {showBusiness.categories.map((cat, idx) => (cat.title)).join(', ')}
             </Text>
           </View>
 
 
-          <Text>{showBusiness.review_count} Reviews</Text>
+          <Text style={styles.review}>{showBusiness.review_count} Reviews</Text>
 
           <Image source={RATING[rating]}
             style={styles.rating} />
@@ -136,19 +137,22 @@ const styles = StyleSheet.create({
   show: {
     justifyContent: "space-around",
     alignItems: "center",
-    flex: 1
+    flex: 1,
+    backgroundColor: "#27343D"
   },
 
   title: {
     fontSize: 24,
     padding: 10,
+    fontWeight: 'bold',
+    color: 'white'
   },
 
   rating: {
     width: 100,
     height: 15,
     padding: 0,
-    margin: 0
+    margin: 0,
   },
 
   category: {
@@ -156,6 +160,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     padding: 5
+  },
+
+  categoryText: {
+    color: 'white'
   },
 
   categoryName: {
@@ -192,24 +200,38 @@ const styles = StyleSheet.create({
     alignContent: 'center'
   },
 
+  review: {
+    color: 'white'
+  },
+
   logoText: {
     marginTop: 7,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'white'
   },
 
   noMore: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: "#27343D"
   },
 
   picky: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 20
+    marginBottom: 20,
+    color: 'white'
   },
 
   uber: {
-    backgroundColor: 'white'
+    alignSelf: 'center',
+    borderColor: 'black',
+    width: 300,
+    height: 44
+  },
+
+  logo: {
+    bottom: 150
   }
 })
