@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>CA7Z3DSQ8D</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -49,20 +49,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-    <string>uber</string>
-    <string>uberauth</string>
-  </array>
-  
-  <key>UberClientID</key>
-  <string>ZDGDpMg211BsDn8I_mEMqYtj6YwRbCgp</string>
-  <key>UberServerToken</key>
-  <string>su8UrURVTGGqLlG-4pgZuTBsD-w4YS-D14djTT6w</string>
-  <key>UberDisplayName</key>
-  <string>Chowtime</string>
-
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>uber</string>
+		<string>uberauth</string>
+	</array>
+	<key>UberClientID</key>
+	<string>ZDGDpMg211BsDn8I_mEMqYtj6YwRbCgp</string>
+	<key>UberServerToken</key>
+	<string>su8UrURVTGGqLlG-4pgZuTBsD-w4YS-D14djTT6w</string>
+	<key>UberDisplayName</key>
+	<string>Chowtime</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
