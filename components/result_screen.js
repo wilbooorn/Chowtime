@@ -115,7 +115,6 @@ class ResultScreen extends React.Component{
 
       let {showBusiness} = this.state
 
-      console.log(showBusiness);
       let rating = showBusiness.rating
 
       return (
